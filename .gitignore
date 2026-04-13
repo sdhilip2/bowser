@@ -1,0 +1,41 @@
+# env
+.env
+.env.local
+*.env
+
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+uv.lock
+
+# node
+node_modules/
+dist/
+.vite/
+*.tsbuildinfo
+
+# data artifacts (snapshot is regenerated on every run)
+frontend/public/data/snapshot.json
+# daily archive accumulates over time — don't commit the history to git
+collector/archive/
+
+# os / editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# tooling dirs
+.claude/
+.playwright-mcp/
+
+# throwaway dev screenshots (playwright session captures)
+*.png
+!frontend/public/**/*.png
+!frontend/src/**/*.png

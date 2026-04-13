@@ -1,0 +1,1306 @@
+/* =================================================================
+   Sticky topbar + anchor nav
+   ================================================================= */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(250, 246, 241, 0.86);
+  backdrop-filter: saturate(1.2) blur(10px);
+  -webkit-backdrop-filter: saturate(1.2) blur(10px);
+  border-bottom: 1px solid var(--surface-line);
+}
+
+.wordmark-bar {
+  padding-top: var(--space-4);
+  padding-bottom: var(--space-4);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 22px;
+  letter-spacing: -0.03em;
+  color: var(--ink-100);
+  flex: 0 0 auto;
+}
+
+.last-updated {
+  justify-self: end;
+  color: var(--ink-40);
+  white-space: nowrap;
+}
+
+.last-updated.stale {
+  color: var(--down);
+}
+
+@media (max-width: 880px) {
+  .last-updated {
+    display: none;
+  }
+}
+
+.topnav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-5);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* The "about" link sits inside .topnav but uses a separate underline
+   so it reads as a linked "leave this view" affordance rather than
+   another in-page anchor. */
+.topnav-about {
+  color: var(--amber-500);
+}
+
+.topnav-about:hover {
+  color: var(--amber-300);
+}
+
+.topnav::-webkit-scrollbar {
+  display: none;
+}
+
+.topnav-link {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.09em;
+  text-transform: lowercase;
+  color: var(--ink-40);
+  position: relative;
+  padding: 4px 0;
+  white-space: nowrap;
+  transition: color 180ms var(--ease-out-expo);
+}
+
+.topnav-link:hover {
+  color: var(--ink-100);
+}
+
+.topnav-active {
+  color: var(--amber-500);
+}
+
+.topnav-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 1px;
+  background: var(--amber-500);
+}
+
+/* Each anchored section sits below the sticky bar — reserve the
+   scroll-margin so clicking a nav link doesn't hide the section header
+   under the ~66px topbar. */
+.section-anchor {
+  scroll-margin-top: 88px;
+}
+
+@media (max-width: 640px) {
+  .topnav {
+    gap: var(--space-4);
+  }
+  .topnav-link {
+    font-size: 10px;
+  }
+}
+
+.section-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+main > .container,
+main > section.container {
+  padding-top: var(--space-6);
+}
+
+.chart-section {
+  padding-top: var(--space-7);
+}
+
+/* =================================================================
+   HERO — asymmetric 7/5
+   ================================================================= */
+
+.hero {
+  padding-top: var(--space-5);
+  padding-bottom: var(--space-7);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: var(--space-5);
+  align-items: center;
+}
+
+.hero-head h1 {
+  margin-top: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.hero-accent {
+  color: var(--amber-500);
+  font-weight: 400;
+}
+
+.hero-unit {
+  font-family: var(--font-mono);
+  font-size: 0.38em;
+  letter-spacing: 0.08em;
+  color: var(--ink-40);
+  text-transform: lowercase;
+  margin-left: 0.15em;
+  vertical-align: 0.7em;
+  font-variant-numeric: tabular-nums;
+}
+
+.hero-deck {
+  max-width: 54ch;
+  font-size: 17px;
+  color: var(--ink-70);
+  line-height: 1.55;
+}
+
+.hero-card {
+  border-top: 1px solid var(--surface-line);
+  border-bottom: 1px solid var(--surface-line);
+  padding: var(--space-4) var(--space-3);
+  background: linear-gradient(180deg, transparent, var(--surface-1));
+}
+
+.hero-card-value {
+  font-size: 56px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ink-100);
+  margin: var(--space-2) 0 var(--space-4);
+}
+
+.hero-card-deltas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+  border-top: 1px solid var(--surface-line);
+  padding-top: var(--space-3);
+}
+
+.hero-card-deltas p.mono {
+  font-size: 18px;
+  color: var(--ink-100);
+  margin-top: 2px;
+}
+
+.hero-card-footnote {
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--surface-line);
+  color: var(--ink-40);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  line-height: 1.5;
+}
+
+.up {
+  color: var(--up) !important;
+}
+.down {
+  color: var(--down) !important;
+}
+
+@media (max-width: 880px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-card-value {
+    font-size: 44px;
+  }
+}
+
+/* =================================================================
+   Crude chart
+   ================================================================= */
+
+.crudechart {
+  position: relative;
+  width: 100%;
+  border-top: 1px solid var(--surface-line);
+  padding-top: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+/* Legend shared across line + bar charts */
+.chart-legend {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-5);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  z-index: 3;
+  pointer-events: none;
+  padding: 6px var(--space-3);
+  background: rgba(250, 246, 241, 0.85);
+  border: 1px solid var(--surface-line);
+  backdrop-filter: blur(4px);
+}
+
+/* Top-center variant — used on the 10-year retail chart where the
+   right corner is reserved for the year filter dropdown. */
+.chart-legend-center {
+  right: auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Retail chart needs generous top padding so the legend + year filter
+   sit in a reserved row ABOVE the plot area instead of floating on top
+   of the lines. */
+.retailchart.crudechart {
+  padding-top: var(--space-7);
+}
+
+/* Year filter select in the 10-year chart's top-right corner */
+.year-filter {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-5);
+  z-index: 3;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
+  color: var(--ink-100);
+  background: rgba(250, 246, 241, 0.92);
+  border: 1px solid var(--surface-line);
+  padding: 6px var(--space-5) 6px var(--space-3);
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  /* Small caret to signal "this is a dropdown" */
+  background-image: linear-gradient(45deg, transparent 50%, var(--ink-70) 50%),
+    linear-gradient(-45deg, transparent 50%, var(--ink-70) 50%);
+  background-position:
+    calc(100% - 14px) calc(50% - 1px),
+    calc(100% - 9px) calc(50% - 1px);
+  background-size: 5px 5px;
+  background-repeat: no-repeat;
+  transition: border-color 160ms var(--ease-out-expo);
+}
+
+.year-filter:hover {
+  border-color: var(--amber-500);
+}
+
+.year-filter:focus {
+  outline: 2px solid var(--amber-glow);
+  outline-offset: 1px;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  color: var(--ink-100);
+  white-space: nowrap;
+}
+
+/* Line swatch — horizontal stroke, matches the chart's stroke-width */
+.legend-line {
+  display: inline-block;
+  width: 18px;
+  height: 2px;
+  border-radius: 1px;
+}
+
+/* Square swatch — for bar/stacked chart legends */
+.legend-chip {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 1px;
+}
+
+@media (max-width: 640px) {
+  .chart-legend {
+    position: static;
+    margin-bottom: var(--space-3);
+    justify-content: flex-start;
+  }
+}
+
+.crude-tooltip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  min-width: 180px;
+  padding: var(--space-3) var(--space-3);
+  background: rgba(255, 255, 255, 0.97);
+  border: 1px solid var(--surface-line);
+  border-left: 2px solid var(--amber-500);
+  box-shadow: 0 12px 32px -12px rgba(60, 40, 20, 0.18);
+  opacity: 0;
+  transition: opacity 140ms var(--ease-out-expo);
+  z-index: 5;
+  backdrop-filter: blur(6px);
+}
+
+.tt-date {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  color: var(--amber-500);
+  margin-bottom: var(--space-2);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--surface-line);
+}
+
+.tt-row {
+  display: grid;
+  grid-template-columns: 8px auto 1fr auto;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 3px 0;
+  font-size: 12px;
+}
+
+.tt-swatch {
+  width: 8px;
+  height: 8px;
+  border-radius: 1px;
+}
+
+.tt-label {
+  color: var(--ink-40);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
+}
+
+.tt-val {
+  color: var(--ink-100);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  justify-self: end;
+  padding-left: var(--space-3);
+}
+
+.tt-alt {
+  color: var(--ink-70);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  justify-self: end;
+  grid-column: 3 / 5;
+  padding-top: 2px;
+}
+
+.tt-row .tt-val {
+  grid-column: 3 / 5;
+}
+
+.tt-row:has(.tt-alt) {
+  grid-template-columns: 8px 40px 1fr;
+  grid-template-rows: auto auto;
+}
+
+.tt-row:has(.tt-alt) .tt-swatch {
+  grid-row: 1 / 3;
+}
+
+.tt-row:has(.tt-alt) .tt-label {
+  grid-row: 1 / 3;
+  grid-column: 2;
+}
+
+.tt-row:has(.tt-alt) .tt-val {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.tt-row:has(.tt-alt) .tt-alt {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+/* =================================================================
+   Pump price cards
+   ================================================================= */
+
+.pumpcards {
+  padding: var(--space-6) 0 var(--space-5);
+}
+
+/* Column headers above the 3-row grid — one caption per column so the
+   "cards = today, charts = last 12 weeks" split is impossible to miss. */
+.pump-columns-header {
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) 1fr;
+  gap: 1px;
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-2);
+}
+
+.pump-col-caption {
+  padding: 0 var(--space-3);
+  color: var(--ink-40);
+}
+
+@media (max-width: 720px) {
+  .pump-columns-header {
+    grid-template-columns: 1fr;
+  }
+  .pump-col-caption + .pump-col-caption {
+    margin-top: var(--space-2);
+  }
+}
+
+/* Pump section — 3 rows each (card + small chart) aligned horizontally */
+.pump-rows {
+  display: grid;
+  grid-template-rows: repeat(3, minmax(220px, 1fr));
+  gap: 1px;
+  background: var(--surface-line);
+  border-top: 1px solid var(--surface-line);
+  border-bottom: 1px solid var(--surface-line);
+}
+
+.pump-row {
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) 1fr;
+  gap: 1px;
+  background: var(--surface-line);
+}
+
+.pump-row > .pumpcard,
+.pump-row > .pump-row-chart {
+  background: var(--surface-0);
+  padding: var(--space-3) var(--space-3);
+}
+
+.pump-row-chart {
+  position: relative;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.fuel-spark {
+  position: relative;
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.fuel-spark-tooltip {
+  min-width: 140px;
+}
+
+@media (max-width: 720px) {
+  .pump-row {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(140px, 1fr);
+  }
+}
+
+.pumpcard {
+  background: var(--surface-0);
+  padding: var(--space-4) var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.pumpcard-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.pumpcard-kind {
+  display: inline-block;
+  padding: 2px 6px;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  border: 1px solid var(--surface-line);
+  color: var(--ink-70);
+  line-height: 1;
+}
+
+.pumpcard-kind-petrol {
+  border-color: var(--amber-500);
+  color: var(--amber-500);
+}
+
+.pumpcard-kind-diesel {
+  border-color: var(--ink-100);
+  color: var(--ink-100);
+}
+
+.pumpcard-value {
+  font-size: 38px;
+  color: var(--ink-100);
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+.pumpcard-unit {
+  color: var(--ink-40);
+  font-size: 15px;
+  margin-left: 2px;
+}
+
+.pumpcard-delta {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  margin-top: var(--space-2);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--surface-line);
+}
+
+.pumpcard-delta.muted {
+  color: var(--ink-40);
+}
+
+.pumpcard-spread {
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--ink-70);
+  padding-top: var(--space-1);
+}
+
+.spread-num {
+  color: var(--ink-100);
+  font-variant-numeric: tabular-nums;
+  font-size: 11px;
+}
+
+.spread-sep {
+  color: var(--ink-40);
+  margin: 0 2px;
+}
+
+.spread-n {
+  color: var(--ink-40);
+  font-size: 10px;
+}
+
+.pumpcards-footnote {
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--surface-line);
+  color: var(--ink-70);
+  font-size: 11px;
+  line-height: 1.6;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  max-width: 900px;
+}
+
+.pumpcard-spark {
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--surface-line);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.pumpcard-spark-meta {
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  color: var(--ink-40);
+}
+
+.delta-up {
+  color: var(--down); /* prices UP = bad for drivers */
+}
+
+.delta-down {
+  color: var(--up); /* prices DOWN = good for drivers */
+}
+
+.delta-arrow {
+  display: inline-block;
+  margin-right: 4px;
+  font-size: 9px;
+}
+
+.delta-sep {
+  color: var(--ink-40);
+}
+
+.delta-window {
+  color: var(--ink-40);
+  margin-left: 4px;
+  font-size: 10px;
+}
+
+@media (max-width: 640px) {
+  .pumpcard-value {
+    font-size: 32px;
+  }
+}
+
+/* =================================================================
+   Waterfall — breaks the grid, edge to edge
+   ================================================================= */
+
+.waterfall-outer {
+  margin-top: var(--space-7);
+  margin-bottom: var(--space-7);
+  padding: var(--space-6) 0;
+  background:
+    radial-gradient(ellipse at center, var(--surface-1), var(--surface-0) 70%);
+  border-top: 1px solid var(--surface-line);
+  border-bottom: 1px solid var(--surface-line);
+}
+
+.waterfall-header {
+  text-align: left;
+  max-width: 1200px;
+  margin: 0 auto var(--space-4);
+  padding-left: var(--space-5);
+  padding-right: var(--space-5);
+}
+
+.waterfall-header h2 {
+  margin-top: var(--space-2);
+}
+
+.waterfall-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--space-3);
+}
+
+/* Waterfall legend is centered (chart-legend-center handles left/right) —
+   only override the top offset so it sits closer to the chart header. */
+.waterfall-legend {
+  top: var(--space-2);
+}
+
+.waterfall-footnote {
+  margin-top: var(--space-4);
+  max-width: 680px;
+}
+
+@media (max-width: 760px) {
+  .waterfall-header {
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+  }
+}
+
+/* =================================================================
+   Fuel Supply — NZ days-of-cover panel
+   ================================================================= */
+
+.fuelsupply {
+  padding: var(--space-6) 0;
+}
+
+.fs-intro {
+  margin-top: var(--space-3);
+  max-width: 780px;
+  color: var(--ink-70);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.fs-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--surface-line);
+  border-top: 1px solid var(--surface-line);
+  border-bottom: 1px solid var(--surface-line);
+  margin-top: var(--space-5);
+}
+
+.fs-stat {
+  background: var(--surface-0);
+  padding: var(--space-4) var(--space-3);
+}
+
+.fs-stat-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--ink-40);
+  margin-bottom: var(--space-3);
+}
+
+.fs-stat-icon {
+  color: var(--amber-500);
+}
+
+.fs-stat-value {
+  font-size: 44px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--ink-100);
+}
+
+.fs-stat-unit {
+  font-size: 14px;
+  color: var(--ink-40);
+  margin-left: var(--space-2);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Legend — centered above the D3 stacked bar chart */
+.fs-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-5);
+  padding: var(--space-5) 0 var(--space-3);
+}
+
+.fs-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  white-space: nowrap;
+}
+
+.fs-swatch {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  flex: 0 0 auto;
+}
+
+/* D3 stacked bar chart — replaces the old CSS bars */
+.fs-chart {
+  position: relative;
+  width: 100%;
+  padding-bottom: var(--space-3);
+}
+
+.fs-chart-tooltip {
+  min-width: 180px;
+}
+
+/* Table with category hints */
+.fs-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-top: 1px solid var(--surface-line);
+  margin-top: var(--space-3);
+}
+
+.fs-table th,
+.fs-table td {
+  text-align: left;
+  padding: var(--space-3) var(--space-3) var(--space-3) 0;
+  border-bottom: 1px solid var(--surface-line);
+  vertical-align: middle;
+}
+
+.fs-table th {
+  color: var(--ink-40);
+  font-weight: 400;
+}
+
+.fs-table td.mono {
+  color: var(--ink-100);
+  font-variant-numeric: tabular-nums;
+}
+
+.fs-table-cat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-right: var(--space-4) !important;
+}
+
+.fs-table-hint {
+  font-size: 9px;
+  color: var(--ink-40);
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+.fs-table-total td {
+  color: var(--amber-500) !important;
+  border-bottom: none;
+  font-weight: 500;
+}
+
+@media (max-width: 720px) {
+  .fs-stats {
+    grid-template-columns: 1fr;
+  }
+  .fs-stat-value {
+    font-size: 36px;
+  }
+  .fs-legend {
+    gap: var(--space-3);
+  }
+}
+
+/* Simplified tooltip row for single-value series (retail trend) */
+.tt-row-simple {
+  display: grid;
+  grid-template-columns: 8px 1fr auto;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 3px 0;
+  font-size: 12px;
+}
+
+.tt-row-simple .tt-val {
+  justify-self: end;
+  color: var(--ink-100);
+}
+
+/* =================================================================
+   Source compare — gaspy vs cardlink side-by-side
+   ================================================================= */
+
+.source-compare {
+  padding: var(--space-6) 0 var(--space-5);
+  border-top: 1px solid var(--surface-line);
+  margin-top: var(--space-6);
+}
+
+.compare-header {
+  margin-bottom: var(--space-4);
+}
+
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-top: 1px solid var(--surface-line);
+  border-bottom: 1px solid var(--surface-line);
+}
+
+.compare-table th,
+.compare-table td {
+  text-align: left;
+  padding: var(--space-3) var(--space-3) var(--space-3) 0;
+  border-bottom: 1px solid var(--surface-line);
+  vertical-align: middle;
+}
+
+.compare-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.compare-table th {
+  font-weight: 400;
+  color: var(--ink-40);
+}
+
+.compare-source-note {
+  display: block;
+  font-size: 9px;
+  color: var(--ink-70);
+  margin-top: 2px;
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+.compare-gaspy {
+  color: var(--ink-100);
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+}
+
+.compare-cardlink {
+  display: flex;
+  gap: var(--space-2);
+  align-items: baseline;
+  font-variant-numeric: tabular-nums;
+}
+
+.compare-mid {
+  color: var(--ink-100);
+  font-size: 16px;
+}
+
+.compare-range {
+  color: var(--ink-40);
+  font-size: 11px;
+}
+
+.compare-diff {
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.compare-na {
+  color: var(--ink-40);
+}
+
+.compare-footnote {
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  color: var(--ink-70);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  line-height: 1.5;
+}
+
+/* =================================================================
+   Cheapest stations
+   ================================================================= */
+
+.cheapest {
+  padding-bottom: var(--space-6);
+}
+
+.cheapest-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid var(--surface-line);
+}
+
+.cheapest-row {
+  display: grid;
+  grid-template-columns: 40px 1fr auto 120px;
+  gap: var(--space-3);
+  align-items: baseline;
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--surface-line);
+  transition: background 160ms var(--ease-out-expo);
+}
+
+.cheapest-row:hover {
+  background: var(--surface-1);
+}
+
+.cheapest-rank {
+  color: var(--amber-500);
+}
+
+.cheapest-name {
+  color: var(--ink-100);
+  font-size: 17px;
+  letter-spacing: -0.005em;
+}
+
+.cheapest-region {
+  justify-self: end;
+  padding-right: var(--space-4);
+}
+
+.cheapest-price {
+  justify-self: end;
+  color: var(--ink-100);
+  font-size: 19px;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 640px) {
+  .cheapest-row {
+    grid-template-columns: 32px 1fr 90px;
+  }
+  .cheapest-region {
+    display: none;
+  }
+}
+
+/* =================================================================
+   News
+   ================================================================= */
+
+.news-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  padding: var(--space-6) 0;
+  border-top: 1px solid var(--surface-line);
+}
+
+@media (max-width: 880px) {
+  .news-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+}
+
+.news-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+}
+
+.news-item {
+  border-bottom: 1px solid var(--surface-line);
+}
+
+.news-item:last-child {
+  border-bottom: none;
+}
+
+.news-item a {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  align-items: start;
+  transition: transform 200ms var(--ease-out-expo);
+}
+
+.news-item a:hover {
+  transform: translateX(4px);
+}
+
+.news-num {
+  color: var(--ink-40);
+  padding-top: 5px;
+}
+
+.news-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.news-title {
+  color: var(--ink-100);
+  font-size: 16px;
+  line-height: 1.35;
+  letter-spacing: -0.005em;
+}
+
+.news-item a:hover .news-title {
+  color: var(--amber-500);
+}
+
+.news-meta {
+  color: var(--ink-40);
+}
+
+/* =================================================================
+   Footer
+   ================================================================= */
+
+.footer {
+  margin-top: var(--space-6);
+  padding-bottom: var(--space-6);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--space-5);
+  padding: var(--space-5) 0;
+}
+
+@media (max-width: 880px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+}
+
+.footer-col p.caption {
+  margin-bottom: var(--space-2);
+}
+
+.footer-body {
+  color: var(--ink-70);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: var(--space-2);
+}
+
+.footer-socials {
+  margin-top: var(--space-1);
+  color: var(--ink-40);
+}
+
+.footer-socials a {
+  color: var(--ink-100);
+}
+
+/* "Built by" column right-aligned so the byline sits at the right edge
+   of the footer instead of hugging the left of its grid cell. */
+.footer-col-right {
+  text-align: right;
+}
+
+/* ─── About page ────────────────────────────────────────────── */
+
+.about-page {
+  min-height: 100vh;
+  background: var(--surface-0);
+  color: var(--ink-100);
+}
+
+.about-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-5);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid var(--surface-line);
+}
+
+.wordmark-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 22px;
+  letter-spacing: -0.03em;
+  color: var(--ink-100);
+  transition: color 160ms var(--ease-out-expo);
+}
+
+.wordmark-button:hover {
+  color: var(--amber-500);
+}
+
+.about-back,
+.about-back-bottom {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: var(--ink-40);
+  transition: color 160ms var(--ease-out-expo);
+}
+
+.about-back:hover,
+.about-back-bottom:hover {
+  color: var(--amber-500);
+}
+
+.about-main {
+  padding-top: var(--space-7);
+  padding-bottom: var(--space-7);
+  max-width: 760px;
+}
+
+.about-eyebrow {
+  margin-bottom: var(--space-3);
+}
+
+.about-main h1 {
+  font-size: clamp(36px, 4.5vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-4);
+  max-width: 18ch;
+}
+
+.about-deck {
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--ink-70);
+  max-width: 52ch;
+}
+
+.about-section {
+  margin-top: var(--space-7);
+}
+
+.about-section h2 {
+  font-size: clamp(24px, 2.8vw, 32px);
+  line-height: 1.1;
+  margin-bottom: var(--space-3);
+}
+
+.about-section p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ink-70);
+  margin-top: var(--space-3);
+  max-width: 62ch;
+}
+
+.about-section p strong {
+  color: var(--ink-100);
+  font-weight: 500;
+}
+
+.about-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-4) 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.about-list li {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-70);
+  padding-left: var(--space-4);
+  border-left: 1px solid var(--surface-line);
+}
+
+.about-list strong {
+  color: var(--ink-100);
+  font-weight: 500;
+}
+
+.about-stack {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  line-height: 1.7;
+  color: var(--ink-40);
+  margin-top: var(--space-3);
+  padding: var(--space-3);
+  border-left: 2px solid var(--amber-500);
+  background: var(--surface-1);
+}
+
+.about-links {
+  font-size: 15px;
+}
+
+.about-main code {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  padding: 1px 6px;
+  background: var(--surface-1);
+  border-radius: 3px;
+  color: var(--ink-100);
+}
+
+.about-footer {
+  margin-top: var(--space-7);
+}
+
+.about-back-bottom {
+  margin-top: var(--space-4);
+  display: inline-block;
+}

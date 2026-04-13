@@ -1,0 +1,44 @@
+:root {
+  /* Surfaces — warm parchment cream (runcabinet-inspired) */
+  --surface-0: #faf6f1;     /* page background */
+  --surface-1: #f3ede4;     /* subtle warm panel */
+  --surface-2: #ffffff;     /* elevated card */
+  --surface-line: #e8ddd0;  /* hairline borders */
+
+  /* Ink — warm brown-black.
+     All three tiers clear WCAG AAA (≥ 7:1 on cream background). The
+     visual hierarchy comes from size + letter-spacing + case, NOT from
+     fading out colour — so captions and axis labels stay readable for
+     everyone including low-vision users. The luminance delta between
+     tiers is only ~2:1 (smaller than typical design systems) because
+     readability takes priority over contrast-based hierarchy. */
+  --ink-100: #3b2f2f;       /* primary text       — ~11:1 contrast */
+  --ink-70:  #4a3e32;       /* secondary          — ~9:1  contrast */
+  --ink-40:  #5a4e42;       /* tertiary / captions — ~7:1  contrast */
+
+  /* Single accent — coffee brown (runcabinet --accent).
+     Token names keep --amber-* for stability, values shifted to cognac. */
+  --amber-500: #8b5e3c;
+  --amber-300: #a0714d;
+  --amber-glow: #8b5e3c22;
+
+  /* Semantic — data viz only. Re-tuned for cream background contrast. */
+  --up:    #2d7d5a;   /* forest green (replaces mint) */
+  --down:  #b83838;   /* brick red (replaces light red) */
+  --brent: #8b5e3c;   /* coffee — primary line */
+  --wti:   #3b2f2f;   /* near-black — secondary line for cream-bg contrast */
+
+  /* Type scale — unchanged, Fraunces still leads */
+  --font-display: "Fraunces Variable", Georgia, serif;
+  --font-body:    "Inter Tight Variable", system-ui, sans-serif;
+  --font-mono:    "JetBrains Mono Variable", ui-monospace, monospace;
+
+  /* Spacing — 8pt grid with editorial generosity */
+  --space-1: 4px;  --space-2: 8px;  --space-3: 16px;
+  --space-4: 24px; --space-5: 40px; --space-6: 64px;
+  --space-7: 96px; --space-8: 144px;
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+}
