@@ -25,78 +25,65 @@ export function AboutPage({ onBack }: Props) {
       </header>
 
       <main className="about-main container">
-        <motion.div
+        <motion.section
+          className="about-section about-section-first"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           <p className="caption about-eyebrow">about</p>
-          <h1>
-            A public dashboard connecting global crude oil markets to New
-            Zealand pump prices.
-          </h1>
-          <p className="about-deck">
-            Bowser turns regulatory and market data into an editorial story —
-            how a barrel of oil becomes the number on your local pump.
-          </p>
-        </motion.div>
-
-        <motion.section
-          className="about-section"
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15, duration: 0.6 }}
-        >
-          <h2>What it shows</h2>
-          <p>Six sections, one scroll-through story:</p>
-          <ul className="about-list">
-            <li>
-              <strong>Global crude</strong> — daily Brent and WTI front-month
-              futures from Yahoo Finance, 12 months of history with an
-              interactive crosshair
-            </li>
-            <li>
-              <strong>NZ pump prices</strong> — today's national averages from
-              CardLink PriceWatch with 12-week MBIE trend charts per fuel
-            </li>
-            <li>
-              <strong>10-year history</strong> — weekly MBIE retail prices back
-              to 2016, filterable by year with a zoom-to-month view
-            </li>
-            <li>
-              <strong>Waterfall</strong> — MBIE's breakdown of how every cent
-              at the pump splits into pre-tax cost, ETS, excise, and GST
-            </li>
-            <li>
-              <strong>Fuel supply</strong> — NZ's days-of-cover across petrol,
-              diesel, and jet fuel, by storage stage (in-country, within EEZ,
-              outside EEZ)
-            </li>
-            <li>
-              <strong>Live news</strong> — oil market and geopolitical
-              headlines that drive prices, refreshed hourly from Google News
-            </li>
-          </ul>
-        </motion.section>
-
-        <motion.section
-          className="about-section"
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.25, duration: 0.6 }}
-        >
-          <h2>Why it exists</h2>
+          <h1>Who am I?</h1>
           <p>
-            Fuel pricing in New Zealand is one of the most politically charged
-            numbers in the country, but the data that explains it is scattered
-            across seven sources in seven different formats. Bowser unifies
-            them into a single editorial page that tells the connection from{" "}
-            <em>news</em> to <em>crude</em> to <em>waterfall</em> to{" "}
-            <em>pump</em> to <em>trend</em>.
+            I'm Dhilip. I work in the data and AI space, based in Wellington,
+            New Zealand, and I've been building and shipping AI products.
           </p>
           <p>
-            It's a personal portfolio project built to demystify NZ fuel
-            pricing — not a trading tool, not a forecast, not financial advice.
+            I'm also a traveller. 40 countries down, 130 to go over the next
+            eight years. That's actually how Bowser started. I kept noticing
+            how war and geopolitics push fuel prices up, and how fuel prices
+            quietly push flight prices up right after. My first idea was to
+            track both. I decided to start with fuel, and start with New
+            Zealand, because I live here and getting out of this country is
+            already expensive enough.
+          </p>
+          <p>
+            There's also the shortage question. Every time I plan a trip I
+            catch myself thinking, what if fuel runs short here and my flight
+            gets cancelled? Watching the pump felt like a good place to begin.
+          </p>
+          <p>
+            Bowser pulls together public fuel and crude oil data and tells it
+            as a story instead of a spreadsheet. Global crude on one side, New
+            Zealand pumps on the other, and a clear picture of what's moving
+            in between.
+          </p>
+          <p>
+            It's also me building in public and having fun with the craft.
+          </p>
+          <p>
+            Find me on{" "}
+            <a
+              href="https://x.com/sdhilip"
+              target="_blank"
+              rel="noreferrer"
+              className="about-link"
+            >
+              X
+            </a>{" "}
+            and{" "}
+            <a
+              href="https://www.linkedin.com/in/dhilip-subramanian-36021918b/?skipRedirect=true"
+              target="_blank"
+              rel="noreferrer"
+              className="about-link"
+            >
+              LinkedIn
+            </a>
+            .
+          </p>
+          <p>
+            Got a question, spotted a mistake, or want to suggest a feature?
+            Reach out on X or LinkedIn — I'd love to hear from you.
           </p>
         </motion.section>
 
@@ -104,30 +91,7 @@ export function AboutPage({ onBack }: Props) {
           className="about-section"
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.35, duration: 0.6 }}
-        >
-          <h2>How it's built</h2>
-          <p>
-            A Python collector fetches all data once per day at 07:00 NZST —
-            news refreshes hourly — validates with Pydantic schemas, and
-            writes a single ~175 KB <code>snapshot.json</code> file. A React +
-            Vite + D3 frontend reads that file and renders every chart as
-            hand-coded D3 v7 SVG.
-          </p>
-          <p className="about-stack">
-            Stack: Python 3.13 · uv · httpx · feedparser · pandas · pydantic ·
-            APScheduler · React 18 · TypeScript · Vite · D3 v7 · Framer Motion
-            · Fontsource (Fraunces, Inter Tight, JetBrains Mono). No database,
-            no API server, no login — just a static snapshot file and a client
-            that renders it.
-          </p>
-        </motion.section>
-
-        <motion.section
-          className="about-section"
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.45, duration: 0.6 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
         >
           <h2>Data sources</h2>
           <p>All free and public:</p>
@@ -143,15 +107,15 @@ export function AboutPage({ onBack }: Props) {
             <li>
               <strong>MBIE Weekly Fuel Price Monitoring</strong> — official
               NZ regulatory retail data, CC BY 4.0 NZ licensed, covering
-              2004-present
+              2004 to present
             </li>
             <li>
               <strong>MBIE Fuel Stocks</strong> — days-of-cover by fuel type,
               updated Monday and Wednesday afternoons
             </li>
             <li>
-              <strong>Google News RSS</strong> — NZ and global oil markets +
-              geopolitics news, aggregated across 8 queries, deduped and
+              <strong>Google News RSS</strong> — NZ and global oil markets
+              and geopolitics news, aggregated across 8 queries, deduped and
               sorted by publication date
             </li>
             <li>
@@ -165,14 +129,66 @@ export function AboutPage({ onBack }: Props) {
           className="about-section"
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.55, duration: 0.6 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
+        >
+          <h2>Data refresh</h2>
+          <p>Bowser keeps itself current on a simple schedule:</p>
+          <ul className="about-list">
+            <li>
+              <strong>Every morning at 07:00 NZST</strong> — the dashboard
+              refreshes with the latest data from every source: global crude
+              prices, NZ retail, MBIE weekly, fuel stocks, and the currency
+              rate.
+            </li>
+            <li>
+              <strong>Every hour on the hour</strong> — just the news
+              updates so the headlines stay current throughout the day. The
+              "last updated" timestamp in the top right reflects this.
+            </li>
+          </ul>
+          <p>
+            Check in the morning and everything is less than an hour old.
+            Check later in the day and the news stays fresh hourly, while
+            the rest holds its morning reading until tomorrow's 07:00
+            refresh.
+          </p>
+        </motion.section>
+
+        <motion.section
+          className="about-section"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+        >
+          <h2>Tech stack</h2>
+          <p>
+            <em>
+              Placeholder — I'll expand this section with architecture
+              decisions and trade-offs soon.
+            </em>
+          </p>
+          <p className="about-stack">
+            Python 3.13 · uv · httpx · feedparser · pandas · pydantic ·
+            APScheduler · React 18 · TypeScript · Vite · D3 v7 · Framer
+            Motion · Fontsource (Fraunces, Inter Tight, JetBrains Mono). No
+            database, no API server, no login — just a static snapshot file
+            and a client that renders it.
+          </p>
+        </motion.section>
+
+        <motion.section
+          className="about-section"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.6 }}
         >
           <h2>Caveats</h2>
           <p>
             MBIE publishes the waterfall's importer cost vs margin split 2-4
             months after each week ends. The current waterfall shows the
-            freshest 4-component breakdown (Provisional) and includes the last
-            finalised cost/margin split as supporting context in the footnote.
+            freshest 4-component breakdown (Provisional) and includes the
+            last finalised cost/margin split as supporting context in the
+            footnote.
           </p>
           <p>
             NZ retail prices vary significantly by region and brand. National
@@ -183,31 +199,6 @@ export function AboutPage({ onBack }: Props) {
             Brent and WTI prices shown are <em>front-month futures</em>, not
             spot. They track within a fraction of a percent of spot on normal
             days but can diverge in acute market events.
-          </p>
-        </motion.section>
-
-        <motion.section
-          className="about-section"
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.65, duration: 0.6 }}
-        >
-          <h2>Contact</h2>
-          <p>
-            Built by <strong>Dhilip Subramanian</strong>.
-          </p>
-          <p className="about-links">
-            <a href="https://x.com/sdhilip" target="_blank" rel="noreferrer">
-              X / @sdhilip
-            </a>
-            {" · "}
-            <a
-              href="https://www.linkedin.com/in/dhilip-subramanian-36021918b/?skipRedirect=true"
-              target="_blank"
-              rel="noreferrer"
-            >
-              LinkedIn
-            </a>
           </p>
         </motion.section>
 

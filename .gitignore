@@ -20,9 +20,9 @@ dist/
 .vite/
 *.tsbuildinfo
 
-# data artifacts (snapshot is regenerated on every run)
-frontend/public/data/snapshot.json
-# daily archive accumulates over time — don't commit the history to git
+# snapshot.json IS committed — Vercel serves it statically, and the
+# GitHub Actions collector commits refreshes back to the repo to trigger
+# redeploys. The daily archive still stays out of git.
 collector/archive/
 
 # os / editor

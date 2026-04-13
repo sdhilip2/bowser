@@ -55,6 +55,13 @@ export function Nav() {
 
   return (
     <nav className="topnav" aria-label="section navigation">
+      <a
+        href="#/about"
+        className="topnav-link topnav-about"
+        onClick={onAboutClick}
+      >
+        about
+      </a>
       {SECTIONS.map((s) => (
         <a
           key={s.id}
@@ -65,13 +72,6 @@ export function Nav() {
           {s.label}
         </a>
       ))}
-      <a
-        href="#/about"
-        className="topnav-link topnav-about"
-        onClick={onAboutClick}
-      >
-        about
-      </a>
     </nav>
   );
 }
